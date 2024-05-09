@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import {backendURL} from "../config/dev"
+
 
 
 const LoginForm = () => {
@@ -21,7 +23,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch(`${backendURL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

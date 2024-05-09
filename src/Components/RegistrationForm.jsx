@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import {backendURL} from "../config/dev"
+
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +23,7 @@ const RegistrationForm = () => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/register',{
+      const response = await fetch(`${backendURL}/register`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

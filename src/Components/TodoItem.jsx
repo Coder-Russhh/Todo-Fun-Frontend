@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {backendURL} from "../config/dev"
+
 
 const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
   const [editing, setEditing] = useState(false);

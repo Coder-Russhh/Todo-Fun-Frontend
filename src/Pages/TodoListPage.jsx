@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoForm from "../Components/TodoForm"; // Create this component
 import TodoItem from "../Components/TodoItem"; // Create this component
 import axios from "axios";
+import {backendURL} from "../config/dev"
 
 const TodoListPage = () => {
   const [todos, setTodos] = useState([]);
@@ -13,7 +14,7 @@ const TodoListPage = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("/api/todos"); // Adjust the API endpoint
+      const response = await axios.get(`${backendURL}/todos`); // Adjust the API endpoint
       setTodos(response.data);
     } catch (error) {
       console.error("Error fetching todos:", error);
@@ -22,7 +23,7 @@ const TodoListPage = () => {
 
   const createTodo = async (title) => {
     try {
-      const response = await axios.post("/api/todos", { title }); // Adjust the API endpoint
+      const response = await axios.post(`${backendURL}/todos`, { title }); // Adjust the API endpoint
       setTodos([...todos, response.data]);
     } catch (error) {
       console.error("Error creating todo:", error);
@@ -31,7 +32,7 @@ const TodoListPage = () => {
 
   const updateTodo = async (id, updatedData) => {
     try {
-      const response = await axios.put(`/api/todos/${id}`, updatedData); // Adjust the API endpoint
+      const response = await axios.put(`${backendURL}/todos/${id}`, updatedData); // Adjust the API endpoint
       const updatedTodos = todos.map((todo) =>
         todo._id === id ? response.data : todo
       );
@@ -43,7 +44,7 @@ const TodoListPage = () => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`/api/todos/${id}`); // Adjust the API endpoint
+      await axios.delete(`${backendURL}/todos/${id}`); // Adjust the API endpoint
       console.log(id)
       const updatedTodos = todos.filter((todo) => todo._id !== id);
       setTodos(updatedTodos);

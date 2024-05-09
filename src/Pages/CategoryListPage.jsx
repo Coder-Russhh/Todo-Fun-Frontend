@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CategoryForm from '../Components/CategoryForm';
+import {backendURL} from "../config/dev"
 
 const CategoryListPage = () => {
   const [categories, setCategories] = useState([]);
@@ -13,7 +14,7 @@ const CategoryListPage = () => {
   // Function to handle category deletion
   const handleCategoryDeleted = async (categoryId) => {
     try {
-      await axios.delete(`/api/categories/${categoryId}`);
+      await axios.delete(`${backendURL}/categories/${categoryId}`);
       console.log(categoryId)
       // Update the categories state after successful deletion
       setCategories((prevCategories) =>
@@ -28,7 +29,7 @@ const CategoryListPage = () => {
     // Fetch categories from the API
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('/api/categories');
+        const response = await axios.get(`${backendURL}/categories`);
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);

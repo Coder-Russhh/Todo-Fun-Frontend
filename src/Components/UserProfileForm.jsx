@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {backendURL} from "../config/dev"
+
 
 const UserProfileForm = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +13,7 @@ const UserProfileForm = () => {
     // Fetch user profile data when the component mounts
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get("/api/userProfile");
+        const response = await axios.get(`${backendURL}/userProfile`);
         const userProfileData = response.data;
         setFormData(userProfileData);
       } catch (error) {
@@ -34,7 +36,7 @@ const UserProfileForm = () => {
 
     try {
       // Send a request to update the user profile
-      const response = await axios.put("/api/userProfile", formData);
+      const response = await axios.put(`${backendURL}/userProfile`, formData);
       console.log("User profile updated:", response.data);
     } catch (error) {
       console.error("Error updating user profile:", error);

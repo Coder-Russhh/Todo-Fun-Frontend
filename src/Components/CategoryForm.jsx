@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {backendURL} from "../config/dev"
 
 const CategoryForm = ({ onCategoryAdded }) => {
   const [name, setName] = useState('');
@@ -9,7 +10,7 @@ const CategoryForm = ({ onCategoryAdded }) => {
 
     try {
       // Send a request to create a new category
-      const response = await axios.post('/api/categories', { name });
+      const response = await axios.post(`${backendURL}/categories`, { name });
 
       // Notify the parent component that a new category has been added
       onCategoryAdded(response.data);
