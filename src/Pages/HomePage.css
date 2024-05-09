@@ -1,0 +1,34 @@
+@keyframes moveRight {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animated-box {
+  animation: moveRight 5s linear infinite; /* Adjust the duration and speed as needed */
+}
+
+/* In your CSS file */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply the animation to the normal state */
+.spin {
+  background-color: #ffc107; /* Yellow color */
+  animation: spin 5s linear infinite; /* Adjust the duration and style as needed for the normal state */
+}
+
+/* Apply the animation to the hover state */
+.spinone {
+  background-color: #3182ce; /* Change the color to blue on hover */
+  animation: spin 2s forwards; /* Adjust the animation duration and style as needed for the hover state */
+}
